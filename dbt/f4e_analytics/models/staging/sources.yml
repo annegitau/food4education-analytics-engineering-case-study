@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: f4e_raw
+    description: >
+      Synthetic raw operational data used for the Food4Education
+      analytics engineering case study.
+
+    database: f4e-analytics-case-study
+    schema: f4e_raw
+
+    tables:
+      - name: schools
+        description: Synthetic school master data.
+
+      - name: meal_production
+        description: Synthetic daily meal production records by kitchen.
+
+      - name: deliveries
+        description: Synthetic meal dispatch and receipt records by school.
+
+      - name: tap2eat_transactions
+        description: >
+          Synthetic Tap2Eat meal transactions. Student identifiers in
+          this raw source are treated as sensitive and are pseudonymised
+          in the staging layer.
+
+      - name: payments
+        description: >
+          Synthetic payment transactions associated with students
+          and schools.

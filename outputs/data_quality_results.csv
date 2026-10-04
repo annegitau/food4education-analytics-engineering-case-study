@@ -1,0 +1,5 @@
+test,failing_rows,status
+Unique transaction_id,1,FAIL
+school_id not null,1,FAIL
+Valid school foreign key,1,FAIL
+meal_qty positive,0,PASS

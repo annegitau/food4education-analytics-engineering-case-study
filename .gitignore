@@ -1,0 +1,36 @@
+# Python virtual environments
+.venv/
+.venv-dbt/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# dbt generated artifacts
+dbt/f4e_analytics/target/
+dbt/f4e_analytics/logs/
+dbt/f4e_analytics/dbt_packages/
+
+# Local dbt profile / user configuration
+dbt/f4e_analytics/profiles.yml
+dbt/f4e_analytics/.user.yml
+
+# Google Cloud credentials
+*.json
+!package.json
+!package-lock.json
+
+# Environment variables / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# IDE / OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log

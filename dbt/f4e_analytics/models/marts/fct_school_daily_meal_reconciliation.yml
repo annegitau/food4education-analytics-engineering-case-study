@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: fct_school_daily_meal_reconciliation
+    description: >
+      Certified daily school-level meal reconciliation dataset.
+      Tracks meals dispatched, received, and served, together with
+      operational variances and illustrative monitoring flags.
+      Thresholds used in this case study are hypothetical and are
+      not Food4Education operational targets.
+
+    columns:
+      - name: service_date
+        data_tests:
+          - not_null
+
+      - name: school_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_schools')
+                field: school_id
+
+      - name: school_name
+        data_tests:
+          - not_null
+
+      - name: county
+        data_tests:
+          - not_null
+
+      - name: kitchen_id
+        data_tests:
+          - not_null
+
+      - name: eligible_learners
+        data_tests:
+          - not_null
+
+      - name: meals_dispatched
+        data_tests:
+          - not_null
+
+      - name: meals_received
+        data_tests:
+          - not_null
+
+      - name: meals_served
+        data_tests:
+          - not_null
+
+      - name: dispatch_to_receipt_variance
+        data_tests:
+          - not_null
+
+      - name: receipt_to_served_variance
+        data_tests:
+          - not_null
+
+      - name: receipt_rate
+        data_tests:
+          - not_null
+
+      - name: serving_rate
+        data_tests:
+          - not_null
+
+      - name: learner_serving_rate
+        data_tests:
+          - not_null
+
+      - name: delivery_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['review', 'within_threshold']
+
+      - name: serving_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['review', 'within_threshold']

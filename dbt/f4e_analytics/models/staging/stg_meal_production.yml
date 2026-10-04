@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_meal_production
+    description: >
+      Cleaned daily meal production records. Each record represents
+      meals prepared by a kitchen on a service date.
+
+    columns:
+      - name: service_date
+        description: Date on which meals were prepared.
+        data_tests:
+          - not_null
+
+      - name: kitchen_id
+        description: Identifier for the kitchen preparing the meals.
+        data_tests:
+          - not_null
+
+      - name: meals_prepared
+        description: Number of meals prepared by the kitchen.
+        data_tests:
+          - not_null

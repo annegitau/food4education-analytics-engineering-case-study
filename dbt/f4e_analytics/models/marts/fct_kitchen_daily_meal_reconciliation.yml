@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: fct_kitchen_daily_meal_reconciliation
+    description: >
+      Certified daily kitchen-level meal reconciliation dataset.
+      Compares meals prepared with meals dispatched and highlights
+      operational variances. Monitoring thresholds used in this
+      case study are illustrative and are not Food4Education
+      operational targets.
+
+    columns:
+      - name: service_date
+        description: Date of meal production and dispatch.
+        data_tests:
+          - not_null
+
+      - name: kitchen_id
+        description: Identifier for the production kitchen.
+        data_tests:
+          - not_null
+
+      - name: meals_prepared
+        description: Total meals prepared by the kitchen for the service date.
+        data_tests:
+          - not_null
+
+      - name: meals_dispatched
+        description: Total meals dispatched from the kitchen to schools.
+        data_tests:
+          - not_null
+
+      - name: prepared_to_dispatch_variance
+        description: Difference between meals prepared and meals dispatched.
+        data_tests:
+          - not_null
+
+      - name: dispatch_rate
+        description: Ratio of meals dispatched to meals prepared.
+        data_tests:
+          - not_null
+
+      - name: dispatch_status
+        description: >
+          Illustrative monitoring flag. A dispatch rate below 95%
+          is marked for review.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['review', 'within_threshold']

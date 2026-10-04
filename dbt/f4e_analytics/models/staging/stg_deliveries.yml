@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_deliveries
+    description: >
+      Cleaned meal delivery records. Each record represents a delivery
+      from a kitchen to a school on a service date.
+
+    columns:
+      - name: delivery_id
+        description: Unique identifier for each delivery.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: service_date
+        description: Date on which the delivery was made.
+        data_tests:
+          - not_null
+
+      - name: kitchen_id
+        description: Kitchen from which meals were dispatched.
+        data_tests:
+          - not_null
+
+      - name: school_id
+        description: School receiving the meal delivery.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_schools')
+                field: school_id
+
+      - name: meals_dispatched
+        description: Number of meals dispatched from the kitchen.
+        data_tests:
+          - not_null
+
+      - name: meals_received
+        description: Number of meals recorded as received by the school.
+        data_tests:
+          - not_null

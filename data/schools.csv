@@ -1,0 +1,13 @@
+school_id,school_name,county,kitchen_id,eligible_learners
+S001,Synthetic School 1,Nairobi,K01,716
+S002,Synthetic School 2,Nairobi,K02,1230
+S003,Synthetic School 3,Nairobi,K03,1140
+S004,Synthetic School 4,Nairobi,K04,979
+S005,Synthetic School 5,Kiambu,K01,974
+S006,Synthetic School 6,Kiambu,K02,1293
+S007,Synthetic School 7,Kiambu,K03,714
+S008,Synthetic School 8,Kiambu,K04,1173
+S009,Synthetic School 9,Mombasa,K01,801
+S010,Synthetic School 10,Mombasa,K02,720
+S011,Synthetic School 11,Mombasa,K03,1044
+S012,Synthetic School 12,Mombasa,K04,1381

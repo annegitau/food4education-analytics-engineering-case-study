@@ -1,0 +1,6 @@
+KPI,Definition,Source,Grain,Refresh,Owner
+Meals Served,Count/sum of successful eligible Tap2Eat meal transactions,Tap2Eat,school/day,Hourly,Operations
+Meals Received,Meals acknowledged at school from a delivery,Logistics,school/day,Daily,Operations
+Consumption Variance,Meals Received - Meals Served,Logistics + Tap2Eat,school/day,Daily,Operations
+Meal Uptake %,Meals Served / Eligible Learners,Tap2Eat + School Master,school/day,Daily,Program
+Delivery Variance,Meals Dispatched - Meals Received,Logistics,delivery,Daily,Logistics

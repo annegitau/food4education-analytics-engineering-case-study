@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_tap2eat_transactions
+    description: >
+      Cleaned and deduplicated Tap2Eat meal transactions.
+      Raw student identifiers are pseudonymised using SHA-256
+      before records are exposed to downstream analytical models.
+
+    columns:
+      - name: transaction_id
+        description: Unique identifier for each Tap2Eat transaction.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: student_id_hash
+        description: SHA-256 pseudonymised student identifier.
+        data_tests:
+          - not_null
+
+      - name: school_id
+        description: >
+          School associated with the meal transaction. Missing or unknown
+          school identifiers are treated as non-blocking data-quality issues
+          and routed to the quarantine layer for investigation.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+
+          - relationships:
+              arguments:
+                to: source('f4e_raw', 'schools')
+                field: school_id
+              config:
+                severity: warn
+
+      - name: tap_timestamp
+        data_tests:
+          - not_null
+
+      - name: service_date
+        description: Nairobi-local calendar date on which the meal was served.
+        data_tests:
+          - not_null
+
+      - name: meal_qty
+        description: Number of meals represented by the transaction.
+        data_tests:
+          - not_null
+
+      - name: status
+        description: Standardized transaction status.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['success', 'failed']

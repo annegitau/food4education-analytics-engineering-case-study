@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_schools
+    description: >
+      Cleaned school reference data used to enrich meal delivery
+      and consumption datasets. Each record represents one school.
+
+    columns:
+      - name: school_id
+        description: Unique identifier for a school.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: school_name
+        description: Name of the school.
+        data_tests:
+          - not_null
+
+      - name: county
+        description: County in which the school is located.
+        data_tests:
+          - not_null
+
+      - name: kitchen_id
+        description: Kitchen responsible for serving the school.
+        data_tests:
+          - not_null
+
+      - name: eligible_learners
+        description: Number of learners eligible for the meal programme.
+        data_tests:
+          - not_null
