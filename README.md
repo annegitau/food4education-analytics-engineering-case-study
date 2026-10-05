@@ -15,6 +15,20 @@ I built a synthetic analytics engineering pipeline to explore how these data sou
 **Important:** This is an independent portfolio project created using synthetic data and publicly available information. It does not use or represent Food4Education's internal data, systems, architecture, thresholds, or business rules.
 
 ---
+## Operational Dashboard
+
+The analytical marts feed an interactive operational dashboard designed around four operational questions:
+
+- **How much?** How many meals were prepared, dispatched, received, and served?
+- **When?** How does meal flow vary from day to day?
+- **Where should operations investigate?** Which schools show the largest received-to-served gaps?
+- **Can we trust the data?** Are data-quality exceptions detected, preserved, and surfaced for investigation?
+
+![From Tap to Meal — Meal Operations and Data Quality Dashboard](images/f4e_meal_operations_dashboard.jpg)
+
+The dashboard preserves the two analytical grains used throughout the project: **kitchen/day** for production reconciliation and **school/day** for delivery and consumption reconciliation. Date filtering applies across both grains, while school-level dimensions such as county are intentionally not applied to kitchen-level production metrics.
+
+> **Note:** All dashboard data is synthetic. Thresholds and operational scenarios are illustrative and do not represent Food4Education's internal metrics or targets.
 
 ## What I built
 
