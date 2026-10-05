@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile src/load_bigquery.py
+          python -m py_compile airflow/f4e_daily_pipeline.py
+
+      - name: Validate required project files
+        run: |
+          test -f README.md
+          test -f dbt/f4e_analytics/dbt_project.yml
+          test -f dbt/f4e_analytics/models/staging/sources.yml
+          test -f dbt/f4e_analytics/models/marts/fct_school_daily_meal_reconciliation.sql
+          test -f dbt/f4e_analytics/models/marts/fct_kitchen_daily_meal_reconciliation.sql
