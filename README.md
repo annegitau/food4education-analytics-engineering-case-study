@@ -218,6 +218,24 @@ and
 
 > **“The pipeline is working and has detected source data that requires investigation.”**
 
+### Final dbt build validation
+
+The complete dbt project was validated end-to-end against BigQuery:
+
+**PASS=69 | WARN=2 | ERROR=0 | SKIP=0 | TOTAL=71**
+
+The two warnings are intentional non-blocking data-quality exceptions introduced into the synthetic Tap2Eat dataset:
+
+- one transaction with a missing `school_id`
+- one transaction referencing an unknown school (`S999`)
+
+These records are detected by dbt tests and routed to the quarantine layer rather than silently entering the operational reporting marts.
+
+This demonstrates a deliberate distinction between:
+
+- **blocking failures** that should stop the pipeline, and
+- **non-blocking quality exceptions** that should be isolated, monitored, and investigated while valid records continue downstream.
+
 ---
 
 ## Repository structure
