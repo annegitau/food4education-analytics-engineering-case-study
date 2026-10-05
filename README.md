@@ -24,7 +24,7 @@ The analytical marts feed an interactive operational dashboard designed around f
 - **Where should operations investigate?** Which schools show the largest received-to-served gaps?
 - **Can we trust the data?** Are data-quality exceptions detected, preserved, and surfaced for investigation?
 
-![From Tap to Meal — Meal Operations and Data Quality Dashboard](images/f4e_meal_operations_dashboard.jpg)
+![From Tap to Meal — Meal Operations and Data Quality Dashboard](images/f4e_meal_operations_dashboard.jpeg)
 
 The dashboard preserves the two analytical grains used throughout the project: **kitchen/day** for production reconciliation and **school/day** for delivery and consumption reconciliation. Date filtering applies across both grains, while school-level dimensions such as county are intentionally not applied to kitchen-level production metrics.
 
