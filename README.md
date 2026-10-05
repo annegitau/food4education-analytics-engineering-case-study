@@ -268,6 +268,16 @@ and
 
 ## Key analytical outputs
 
+### KPI dictionary
+
+Operational metrics are documented in [`docs/kpi_dictionary.csv`](docs/kpi_dictionary.csv), including their business definition, calculation logic, source model, reporting grain, refresh cadence, ownership, and interpretation.
+
+The dictionary covers the full reconciliation flow:
+
+**Prepared → Dispatched → Received → Served**
+
+It also documents data-quality monitoring through the quarantined-records metric. Review thresholds used in this case study are illustrative and are not Food4Education operational targets.
+
 ### School daily meal reconciliation
 
 `fct_school_daily_meal_reconciliation`

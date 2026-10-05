@@ -1,6 +1,13 @@
-KPI,Definition,Source,Grain,Refresh,Owner
-Meals Served,Count/sum of successful eligible Tap2Eat meal transactions,Tap2Eat,school/day,Hourly,Operations
-Meals Received,Meals acknowledged at school from a delivery,Logistics,school/day,Daily,Operations
-Consumption Variance,Meals Received - Meals Served,Logistics + Tap2Eat,school/day,Daily,Operations
-Meal Uptake %,Meals Served / Eligible Learners,Tap2Eat + School Master,school/day,Daily,Program
-Delivery Variance,Meals Dispatched - Meals Received,Logistics,delivery,Daily,Logistics
+KPI,Definition,Calculation,Source Model,Grain,Refresh,Owner,Interpretation
+Meals Prepared,Total meals prepared by a kitchen for a service date,SUM(meals_prepared),fct_kitchen_daily_meal_reconciliation,kitchen/day,Daily,Kitchen Operations,Volume of meals produced before dispatch
+Meals Dispatched,Total meals dispatched from a kitchen or to a school,SUM(meals_dispatched),fct_kitchen_daily_meal_reconciliation / fct_school_daily_meal_reconciliation,kitchen/day or school/day,Daily,Logistics,Volume of meals sent from kitchens to schools
+Meals Received,Total meals acknowledged as received at a school,SUM(meals_received),fct_school_daily_meal_reconciliation,school/day,Daily,Operations,Volume of dispatched meals confirmed as received by the school
+Meals Served,Total successful valid Tap2Eat meal transactions,SUM(meal_qty) WHERE status = 'success',fct_school_daily_meal_reconciliation,school/day,Daily,Operations,Meals represented by valid successful Tap2Eat transactions after data-quality filtering
+Prepared-Dispatch Variance,Difference between meals prepared and meals dispatched,meals_prepared - meals_dispatched,fct_kitchen_daily_meal_reconciliation,kitchen/day,Daily,Kitchen Operations,Highlights meals prepared but not represented in dispatch records
+Dispatch Rate,Share of prepared meals that were dispatched,meals_dispatched / meals_prepared,fct_kitchen_daily_meal_reconciliation,kitchen/day,Daily,Kitchen Operations,Illustrative review flag when below 95 percent
+Delivery Variance,Difference between meals dispatched and meals received,meals_dispatched - meals_received,fct_school_daily_meal_reconciliation,school/day,Daily,Logistics,Highlights potential losses or reconciliation differences between dispatch and receipt
+Receipt Rate,Share of dispatched meals recorded as received,meals_received / meals_dispatched,fct_school_daily_meal_reconciliation,school/day,Daily,Logistics,Illustrative review flag when below 95 percent
+Consumption Variance,Difference between meals received and meals served,meals_received - meals_served,fct_school_daily_meal_reconciliation,school/day,Daily,Operations,Highlights received meals not represented by valid successful Tap2Eat transactions
+Serving Rate,Share of received meals represented as served,meals_served / meals_received,fct_school_daily_meal_reconciliation,school/day,Daily,Operations,Illustrative review flag when below 90 percent
+Learner Serving Rate,Meals served relative to eligible learners,meals_served / eligible_learners,fct_school_daily_meal_reconciliation,school/day,Daily,Program,Indicates meal uptake relative to the eligible learner population
+Quarantined Records,Tap2Eat transactions excluded from operational marts because they fail defined quality rules,COUNT(*) FROM int_tap2eat_quarantine,int_tap2eat_quarantine,transaction,Daily,Data & Analytics,Non-blocking quality exceptions retained for investigation rather than silently discarded
